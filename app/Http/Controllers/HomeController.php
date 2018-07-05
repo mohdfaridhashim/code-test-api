@@ -19,9 +19,7 @@ class HomeController extends Controller
         $response = [
           'title' => env('API_NAME'),
           'api-version' => env('API_VERSION'),
-          'lumen-version' => app()->version(),
-          'created' => '2017-08-29 12:01',
-          'updated' => '2017-09-12 12:36',
+          'lumen-version' => app()->version()
         ];
         return response()->json($response);
     }
