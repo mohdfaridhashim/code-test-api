@@ -29,7 +29,10 @@ class HealthController extends Controller
 
     public function GET_maintenance()
     {
-        return $this->response->error(env('API_MSG'), env('API_OFFLINE_CODE'));
+        $response = [
+          'error_message' => env('API_MSG'),
+        ];
+        return response()->json($response)->setStatusCode(env('API_OFFLINE_CODE'));
     }
 
     //
