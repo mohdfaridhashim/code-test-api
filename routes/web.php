@@ -14,10 +14,13 @@ $api = app('Dingo\Api\Routing\Router');
 
 $api->version('v1', function ($api)
 {
-	$api->get('/', ['uses' => 'App\Http\Controllers\HomeController@GET_index']);
+	$api->get('/maintenance', ['as' => 'maintenance', 'uses' => 'App\Http\Controllers\HealthController@GET_maintenance']);
 
-	$api->group(['prefix' => 'health'], function ($api) {
-        $api->get('/check', [ 'uses' => 'App\Http\Controllers\HomeController@GET_check'])->route('check');
-        $api->get('/maintenance', ['uses' => 'App\Http\Controllers\HomeController@GET_maintenance'])->route('maintenance');
+	$api->group(['middleware' => 'maintenance'], function ($api) {
+		$api->get('/', ['uses' => 'App\Http\Controllers\HomeController@GET_index']);
+		$api->group(['prefix' => 'health'], function ($api) {
+	        $api->get('/check', ['as' => 'check',  'uses' => 'App\Http\Controllers\HealthController@GET_check']);
+	    });
     });
+
 });

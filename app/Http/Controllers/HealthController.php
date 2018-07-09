@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Dingo\Api\Routing\Helpers;
 use Illuminate\Routing\Controller;
-class HomeController extends Controller
+class HealthController extends Controller
 {
     use Helpers;
     /**
@@ -29,7 +29,7 @@ class HomeController extends Controller
 
     public function GET_maintenance()
     {
-        return return $this->response->error(env('API_MSG'), env('API_OFFLINE_CODE'));
+        return $this->response->error(env('API_MSG'), env('API_OFFLINE_CODE'));
     }
 
     //
