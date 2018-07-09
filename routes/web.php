@@ -15,4 +15,9 @@ $api = app('Dingo\Api\Routing\Router');
 $api->version('v1', function ($api)
 {
 	$api->get('/', ['uses' => 'App\Http\Controllers\HomeController@GET_index']);
+
+	$api->group(['prefix' => 'health'], function ($api) {
+        $api->get('/check', ['as' => 'health_check', 'uses' => 'App\Http\Controllers\HomeController@GET_check']);
+        $api->get('/maintenance', ['as' => 'maintenance', 'uses' => 'App\Http\Controllers\HomeController@GET_maintenance']);
+    });
 });
