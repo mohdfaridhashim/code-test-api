@@ -2,7 +2,8 @@ actor: ApiTester
 modules:
     enabled:
         - REST:
-            url: 'https://code-test-api.herokuapp.com'
+            #url: 'https://code-test-api.herokuapp.com'
+            url: 'http://code-test.my'
             depends: PhpBrowser
     config:
         - Lumen:
