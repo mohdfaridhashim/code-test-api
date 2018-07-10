@@ -35,6 +35,7 @@ class HealthController extends Controller
     public function GET_check()
     {
         $response = [
+          'status' => 'SUCCESS',
           'title' => env('API_NAME'),
           'api-version' => env('API_VERSION'),
           'lumen-version' => app()->version()

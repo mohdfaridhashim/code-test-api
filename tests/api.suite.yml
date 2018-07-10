@@ -1,0 +1,9 @@
+actor: ApiTester
+modules:
+    enabled:
+        - REST:
+            url: 'http://code-test.my'
+            depends: PhpBrowser
+    config:
+        - Lumen:
+            environment_file: .env
