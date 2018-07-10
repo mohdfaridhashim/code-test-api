@@ -65,6 +65,7 @@ $app->singleton(
 
 $app->routeMiddleware([
     'maintenance' => App\Http\Middleware\MaintenanceMiddleware::class,
+    'authcheck' => App\Http\Middleware\AuthCheckerMiddleware::class,
 ]);
 
 /*
@@ -94,6 +95,10 @@ $app['Dingo\Api\Exception\Handler']->setErrorFormat([
     ]
 ]);
 
+//enable rate limiting
+$app['Dingo\Api\Http\RateLimit\Handler']->extend(function ($app) {
+    return new Dingo\Api\Http\RateLimit\Throttle\Authenticated;
+});
 /*
 |--------------------------------------------------------------------------
 | Load The Application Routes

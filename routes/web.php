@@ -14,9 +14,9 @@ $api = app('Dingo\Api\Routing\Router');
 
 $api->version('v1', function ($api)
 {
-	$api->get('/maintenance', ['as' => 'maintenance', 'uses' => 'App\Http\Controllers\HealthController@GET_maintenance']);
+	$api->get('/health/maintenance', ['as' => 'maintenance', 'uses' => 'App\Http\Controllers\HealthController@GET_maintenance']);
 
-	$api->group(['middleware' => 'maintenance'], function ($api) {
+	$api->group(['middleware' => ['maintenance','api.throttle'],'limit' => 100], function ($api) {
 		$api->get('/', ['uses' => 'App\Http\Controllers\HomeController@GET_index']);
 		$api->group(['prefix' => 'health'], function ($api) {
 	        $api->get('/check', ['as' => 'check',  'uses' => 'App\Http\Controllers\HealthController@GET_check']);

@@ -4,6 +4,11 @@ namespace App\Http\Controllers;
 
 use Dingo\Api\Routing\Helpers;
 use Illuminate\Routing\Controller;
+/**
+ * User resource representation.
+ *
+ * @Resource("Health", uri="/health")
+ */
 class HealthController extends Controller
 {
     use Helpers;
@@ -17,6 +22,16 @@ class HealthController extends Controller
         //
     }
 
+    /**
+     * GET app health check
+     *
+     * Get a JSON representation of app health
+     *
+     * @Get("/check")
+     * @Versions({"v1"})
+     * @Request()
+     * @Response(200, body={"title": "code-test", "api-version": "v1", "lumen-version": "Lumen (5.6.4) (Laravel Components 5.6.*)"})
+     */
     public function GET_check()
     {
         $response = [
@@ -27,6 +42,16 @@ class HealthController extends Controller
         return response()->json($response);
     }
 
+    /**
+     * GET app maintenance
+     *
+     * Get a JSON representation of app maintenance mode
+     *
+     * @Get("/maintenance")
+     * @Versions({"v1"})
+     * @Request()
+     * @Response(200, body={ "error_message": "the backend on maintenance mode" })
+     */
     public function GET_maintenance()
     {
         $response = [

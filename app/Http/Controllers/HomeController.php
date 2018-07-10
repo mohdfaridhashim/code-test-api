@@ -2,6 +2,11 @@
 
 namespace App\Http\Controllers;
 
+/**
+ * User resource representation.
+ *
+ * @Resource("Home", uri="/")
+ */
 class HomeController extends Controller
 {
     /**
