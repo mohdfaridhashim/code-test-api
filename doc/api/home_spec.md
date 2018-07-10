@@ -1,6 +1,6 @@
 FORMAT: 1A
 
-# Health
+# LUMEN API SPEC
 
 # Health [/health]
 Health Checking
@@ -14,6 +14,7 @@ Get a JSON representation of app health
     + Body
 
             {
+                "status": "SUCCESS",
                 "title": "code-test",
                 "api-version": "v1",
                 "lumen-version": "Lumen (5.6.4) (Laravel Components 5.6.*)"
@@ -28,5 +29,24 @@ Get a JSON representation of app maintenance mode
     + Body
 
             {
+                "status": "FAIL",
                 "error_message": "the backend on maintenance mode"
+            }
+
+# Home
+Default URL
+
+## GET default API response [GET /]
+Get a JSON representation of default URL
+
++ Request (application/json)
+
++ Response 200 (application/json)
+    + Body
+
+            {
+                "status": "SUCESS",
+                "title": "code-test",
+                "api-version": "v1",
+                "lumen-version": "Lumen (5.6.4) (Laravel Components 5.6.*)"
             }

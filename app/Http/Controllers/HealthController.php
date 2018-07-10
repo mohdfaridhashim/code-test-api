@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Dingo\Api\Routing\Helpers;
 use Illuminate\Routing\Controller;
 /**
- * User resource representation.
+ * Health Checking
  *
  * @Resource("Health", uri="/health")
  */
@@ -30,7 +30,7 @@ class HealthController extends Controller
      * @Get("/check")
      * @Versions({"v1"})
      * @Request()
-     * @Response(200, body={"title": "code-test", "api-version": "v1", "lumen-version": "Lumen (5.6.4) (Laravel Components 5.6.*)"})
+     * @Response(200, body={"status": "SUCCESS", "title": "code-test", "api-version": "v1", "lumen-version": "Lumen (5.6.4) (Laravel Components 5.6.*)"})
      */
     public function GET_check()
     {
@@ -51,11 +51,12 @@ class HealthController extends Controller
      * @Get("/maintenance")
      * @Versions({"v1"})
      * @Request()
-     * @Response(200, body={ "error_message": "the backend on maintenance mode" })
+     * @Response(200, body={ "status": "FAIL", "error_message": "the backend on maintenance mode" })
      */
     public function GET_maintenance()
     {
         $response = [
+          'status' => 'FAIL',
           'error_message' => env('API_MSG'),
         ];
         return response()->json($response)->setStatusCode(env('API_OFFLINE_CODE'));

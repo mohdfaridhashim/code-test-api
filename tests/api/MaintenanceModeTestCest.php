@@ -15,6 +15,6 @@ class MaintenanceModeTestCest
     public function tryToTest(ApiTester $I)
     {
         $I->sendGET('/health/maintenance');
-        $I->seeResponseCodeIs(510);
+        $I->seeResponseContainsJson(array('status' => 'FAIL'));
     }
 }

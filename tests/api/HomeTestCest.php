@@ -17,5 +17,6 @@ class HomeTestCest
         $I->sendGET('/');
         $I->seeResponseCodeIs(\Codeception\Util\HttpCode::OK);
         $I->seeResponseContainsJson(array('api-version' => 'v1'));
+        $I->seeResponseContainsJson(array('status' => 'SUCCESS'));
     }
 }
