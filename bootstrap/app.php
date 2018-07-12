@@ -66,6 +66,7 @@ $app->singleton(
 $app->routeMiddleware([
     'maintenance' => App\Http\Middleware\MaintenanceMiddleware::class,
     'authcheck' => App\Http\Middleware\AuthCheckerMiddleware::class,
+    'auth' => App\Http\Middleware\Authenticate::class,
 ]);
 
 /*
@@ -83,6 +84,9 @@ $app->routeMiddleware([
 $app->register(Dingo\Api\Provider\LumenServiceProvider::class);
 // $app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
+//passport
+$app->register(Laravel\Passport\PassportServiceProvider::class);
+$app->register(Dusterio\LumenPassport\PassportServiceProvider::class);
 
 //added redis
 $app->register(Illuminate\Redis\RedisServiceProvider::class);
