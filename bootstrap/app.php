@@ -84,6 +84,10 @@ $app->register(Dingo\Api\Provider\LumenServiceProvider::class);
 // $app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
 
+//added redis
+$app->register(Illuminate\Redis\RedisServiceProvider::class);
+$app->configure('database');
+
 // error handler
 $app['Dingo\Api\Exception\Handler']->setErrorFormat([
     'error' => [
